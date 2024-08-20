@@ -1,0 +1,137 @@
+/* Portfolio Page Specific Styles */
+body {
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: #00796b;
+  color: #fff;
+  padding: 1rem 0;
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5rem;
+}
+
+header h1 {
+  font-size: 1.8rem;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 1rem;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.portfolio {
+  padding: 2rem 0;
+}
+
+.portfolio .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.portfolio h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #00796b;
+}
+
+.portfolio-item {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-item-image {
+  flex: 1;
+  margin-right: 1rem;
+}
+
+.portfolio-item-image img {
+  width: 100%;
+  height: 200px;
+  border-radius: 5px;
+}
+
+.portfolio-item-details {
+  flex: 2;
+}
+
+.portfolio-item-details h3 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  color: #034941;
+}
+
+.portfolio-item-details p {
+  padding: 0;
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  line-height: 1.5rem;
+}
+
+.portfolio-item-details a {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: #00796b;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.portfolio-item-details a:hover {
+  text-decoration: underline;
+}
+
+.portfolio-item:hover {
+  background-color: #f5f5f5;
+}
+
+footer {
+  background: #00796b;
+  color: #fff;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+footer .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+footer .social-links {
+  margin-top: 1rem;
+}
+
+footer .social-links a {
+  color: #fff;
+  margin: 0 0.5rem;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+footer .social-links a:hover {
+  color: #b2dfdb;
+}
