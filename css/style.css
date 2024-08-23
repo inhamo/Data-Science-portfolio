@@ -28,8 +28,11 @@ header h1 {
   margin: 0;
 }
 
+/* Nav Styles */
 nav {
   display: flex;
+  justify-content: center; /* Center align the nav items */
+  width: 100%;
 }
 
 nav ul {
@@ -86,7 +89,6 @@ nav ul li a:hover {
   color: #fff;
   padding: 0.75rem 1.5rem;
   margin-top: 1rem;
-  margin-bottom: 1rem;
   border-radius: 5px;
   text-decoration: none;
   font-weight: 500;
@@ -100,6 +102,7 @@ nav ul li a:hover {
 .hero-image {
   max-width: 100%;
   border-radius: 50%;
+  display: none; /* Hide profile picture on mobile */
 }
 
 /* Articles Section */
@@ -297,7 +300,7 @@ footer p {
 
   nav ul {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center; /* Center align nav items on tablet screens */
   }
 
   nav ul li {
@@ -329,6 +332,11 @@ footer p {
   .articles-grid {
     grid-template-columns: 1fr;
   }
+
+  /* Hide profile picture */
+  .hero-image {
+    display: none;
+  }
 }
 
 @media (max-width: 480px) {
@@ -338,10 +346,6 @@ footer p {
 
   .hero p {
     font-size: 0.8rem;
-  }
-
-  .portfolio-item img {
-    height: auto;
   }
 
   .form-group input,
