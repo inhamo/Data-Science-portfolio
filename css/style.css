@@ -164,12 +164,22 @@ footer {
 }
 
 @media (max-width: 480px) {
+  header h1 {
+    display: hidden;
+  }
+
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
   .hero-content {
     padding: 20px;
   }
 
-  .hero img {
-    display: hidden
+  .hero-image {
+    display: hidden;
   }
 
   .portfolio-item img {
