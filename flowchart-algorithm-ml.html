@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Learning Model Selection Flowchart</title>
+    <link rel="stylesheet" href="flowchart-algorithm-ml.css">
+    <script src="flowchart-algorithm-ml.js" defer></script>
+</head>
+<body>
+    <h1>Machine Learning Model Selection Flowchart</h1>
+
+    <div class="flowchart" onclick="toggleContent('step1')">
+        <div class="step" tabindex="0">Identify Business Problem</div>
+        <div id="step1" class="choices" aria-hidden="true">
+            <div class="step-in" onclick="showChoices('supervised', 'unsupervised')">Supervised</div>
+            <div class="step-in" onclick="showChoices('unsupervised', 'supervised')">Unsupervised</div>
+        </div>
+    </div>
+
+    <!-- Supervised Path -->
+    <div id="supervised" class="choices" aria-hidden="true">
+        <div class="step-in" onclick="showChoices('categorical', 'continuous')">Categorical</div>
+        <div class="step-in" onclick="showChoices('continuous', 'categorical')">Continuous</div>
+    </div>
+
+    <!-- Categorical Path -->
+    <div id="categorical" class="choices" aria-hidden="true">
+        <div class="step-in" onclick="showChoices('binary', 'multiclass')">Binary</div>
+        <div class="step-in" onclick="showChoices('multiclass', 'binary')">Multiclass</div>
+    </div>
+
+    <!-- Categorical Binary Path of less than 1000 -->
+    <div id="binary" class="choices" aria-hidden="true">
+        <div class="step-in" onclick="showChoices('highClassImbalanceBinary', 'numericCategoricalDecisionBinary')">Dataset size &lt; 1000</div>
+        <div class="step-in" onclick="showChoices('numericCategoricalDecisionBinary', 'highClassImbalanceBinary')">Dataset size &gt; 1000</div>
+    </div>
+
+    <div id="highClassImbalanceBinary" class="choices" aria-hidden="true">
+        <div class="step-in" onclick="showChoices('logisticRegressionSMOTE', 'logisticRegression')">High Class Imbalance</div>
+        <div class="step-in" onclick="showChoices('logisticRegression', 'logisticRegressionSMOTE')">Balanced Data</div>
+    </div>
+
+    <div id="logisticRegressionSMOTE" class="choices" aria-hidden="true">
+        <div class="step-in final" onclick = "showChoices('chooseClassificationMetric', '')">Logistic Regression SMOTE</div>
+    </div>
+
+    <div id="logisticRegression" class="choices" aria-hidden="true">
+        <div class="step-in final" onclick = "showChoices('chooseClassificationMetric', '')">Logistic Regression</div>
+    </div>
+
+    <!-- Categorical Binary Path of greater than 1000 -->
+    <div id="numericCategoricalDecisionBinary" class="choices" aria-hidden="true">
+        <div class="step-in" onclick="showChoices('numericGreaterBinary', 'categoricalGreater')">Numeric Features</div>
+        <div class="step-in" onclick="showChoices('categoricalGreater', 'numericGreaterBinary')">Categorical Features</div>
+    </div>
+
+    <div id="numericGreaterBinary" class="choices" aria-hidden="true">
+        <div class="step-in" onclick="showChoices('interpretabilityRequiredNumericBinary', 'manyFeaturesNumericBinary')">Interpretability Required</div>
+        <div class="step-in" onclick="showChoices('manyFeaturesNumericBinary', 'interpretabilityRequiredNumericBinary')">Interpretability Not Required</div>
+    </div>
+
+    <div id="interpretabilityRequiredNumericBinary" class="choices" aria-hidden="true">
+        <div class="step-in final" onclick = "showChoices('chooseClassificationMetric', '')">Regularized Logistic Regression</div>
+    </div>
+
+    <div id="manyFeaturesNumericBinary" class="choices" aria-hidden="true">
+        <div class="step-in" onclick="showChoices('interaction-non-linear-numeric-binary', 'is-skewed-target-numeric-binary')">Many Features</div>
+        <div class="step-in" onclick="showChoices('is-skewed-target-numeric-binary', 'interaction-non-linear-numeric-binary')">Less Features</div>
+    </div>
+
+    <div id="interaction-non-linear-numeric-binary" class="choices" aria-hidden="true">
+        <div class="step-in" onclick="showChoices('interaction-numeric-binary', 'non-linear-numeric-binary')">Interactions</div>
+        <div class="step-in" onclick="showChoices('non-linear-numeric-binary', 'interaction-numeric-binary')">Non-Linear</div>
+    </div>
+
+    <div id="interaction-numeric-binary" class="choices" aria-hidden="true">
+        <div class="step-in final" onclick = "showChoices('chooseClassificationMetric', '')">Gradient Boosting Machine</div>
+    </div>
+
+    <div id="non-linear-numeric-binary" class="choices" aria-hidden="true">
+        <div class="step-in final" onclick = "showChoices('chooseClassificationMetric', '')">Random Forest</div>
+    </div>
+
+    <div id="is-skewed-target-numeric-binary" class="choices" aria-hidden="true">
+        <div class="step-in" onclick="showChoices('skewed-target-numeric-binary', 'not-skewed-target-numeric-binary')">High Skewed Target</div>
+        <div class="step-in" onclick="showChoices('not-skewed-target-numeric-binary', 'skewed-target-numeric-binary')">Unskewed Target</div>
+    </div>
+
+    <div id="skewed-target-numeric-binary" class="choices" aria-hidden="true">
+        <div class="step-in final" onclick = "showChoices('chooseClassificationMetric', '')">Robust Regression</div>
+    </div>
+
+    <div id="not-skewed-target-numeric-binary" class="choices" aria-hidden="true">
+        <div class="step-in final" onclick = "showChoices('chooseClassificationMetric', '')">Support Vector Machine</div>
+    </div>
+
+    <!-- Categorical Multiclass Path -->
+    <div id="multiclass" class="choices" aria-hidden="true">
+        <div class="step-in" onclick="showChoices('lessMultclass', 'greaterMulticlass')">Dataset size &lt; 1000</div>
+        <div class="step-in" onclick="showChoices('greaterMulticlass', 'lessMultclass')">Dataset size &gt; 1000</div>
+    </div>
+
+    <div id="lessMultclass" class="choices" aria-hidden="true">
+        <div class="step-in" onclick="showChoices('numericLessMulticlass', 'categoricalLessMulticlass')">Numeric Features</div>
+        <div class="step-in" onclick="showChoices('categoricalLessMulticlass', 'numericLessMulticlass')">Categorical Features</div>
+    </div>
+
+    <div id="numericLessMulticlass" class="choices" aria-hidden="true">
+        <div class="step-in final" onclick = "showChoices('chooseClassificationMetric', '')">Naive Bayes</div>
+    </div>
+
+    <div id="categoricalLessMulticlass" class="choices" aria-hidden="true">
+        <div class="step-in final" onclick = "showChoices('chooseClassificationMetric', '')">Multinomial Naive Bayes</div>
+    </div>
+
+    <div id="greaterMulticlass" class="choices" aria-hidden="true">
+        <div class="step-in" onclick="showChoices('interpretabilityRequiredDecisionGreaterMulticlass', 'manyCategories')">Numeric Features</div>
+        <div class="step-in" onclick="showChoices('manyCategories', 'interpretabilityRequiredDecisionGreaterMulticlass')">Categorical Features</div>
+    </div>
+
+    <div id="interpretabilityRequiredDecisionGreaterMulticlass" class="choices" aria-hidden="true">
+        <div class="step-in" onclick="showChoices('interpretabilityRequiredGreaterMulticlass', 'interpretabilityNotRequiredGreaterMulticlass')">Interpretability Required</div>
+        <div class="step-in" onclick="showChoices('interpretabilityNotRequiredGreaterMulticlass', 'interpretabilityRequiredGreaterMulticlass')">Interpretability Not Required</div>
+    </div>
+
+    <div id="interpretabilityNotRequiredGreaterMulticlass" class="choices" aria-hidden="true">
+        <div class="step-in" onclick="showChoices('interactionsGreaterMulticlass', 'interactionsDontGreaterMulticlass')">Features Interact</div>
+        <div class="step-in" onclick="showChoices('interactionsDontGreaterMulticlass', 'interactionsGreaterMulticlass')">Features Don't Interact</div>
+    </div>
+
+    <div id="interpretabilityRequiredGreaterMulticlass" class="choices" aria-hidden="true">
+        <div class="step-in final" onclick = "showChoices('chooseClassificationMetric', '')">Multi-class Logistic Regression</div>
+    </div>
+
+    <div id="interactionsGreaterMulticlass" class="choices" aria-hidden="true">
+        <div class="step-in final" onclick = "showChoices('chooseClassificationMetric', '')">Random Forest</div>
+    </div>
+
+    <div id="interactionsDontGreaterMulticlass" class="choices" aria-hidden="true">
+        <div class="step-in final" onclick = "showChoices('chooseClusteringMetric', '')">XGBoost</div>
+    </div>
+
+    <div id="manyCategories" class="choices" aria-hidden="true">
+        <div class="step-in" onclick="showChoices('manyCategoryYes', 'manyCategoryNo')">Many Categories</div>
+        <div class="step-in" onclick="showChoices('manyCategoryNo', 'manyCategoryYes')">Less Categories</div>
+    </div>
+
+    <div id="manyCategoryYes" class="choices" aria-hidden="true">
+        <div class="step-in final" onclick = "showChoices('chooseClassificationMetric', '')">Multi-class Decision Tree</div>
+    </div>
+
+    <div id="manyCategoryNo" class="choices" aria-hidden="true">
+        <div class="step-in" onclick="showChoices('rareCategoriesYes', 'rareCategoriesNo')">Rare Categories</div>
+        <div class="step-in" onclick="showChoices('rareCategoriesNo', 'rareCategoriesYes')">No Rare Categories</div>
+    </div>
+
+    <div id="rareCategoriesYes" class="choices" aria-hidden="true">
+        <div class="step-in final" onclick="showChoices('chooseClassificationMetric', '')">One-vs-Rest Classifier</div>
+    </div>
+
+    <div id="rareCategoriesNo" class="choices" aria-hidden="true">
+        <div class="step-in final" onclick = "showChoices('chooseClassificationMetric', '')">Decision Tree</div>
+    </div>
+
+    <!-- Unsupervised Path -->
+<div id="unsupervised" class="choices" aria-hidden="true">
+    <div class="step-in" onclick="showChoices('clustering', 'dimensionalityReduction')">Clustering</div>
+    <div class="step-in" onclick="showChoices('dimensionalityReduction', 'clustering')">Dimensionality Reduction</div>
+    <div class="step-in" onclick="showChoices('anomalyDetection', 'clustering')">Anomaly Detection</div>
+</div>
+
+<!-- Clustering -->
+<div id="clustering" class="choices" aria-hidden="true">
+    <div class="step-in" onclick="showChoices('sizeLess1000Clustering', 'sizeGreater1000Clustering')">Dataset Size &lt; 1000</div>
+    <div class="step-in" onclick="showChoices('sizeGreater1000Clustering', 'sizeLess1000Clustering')">Dataset Size &gt; 1000</div>
+</div>
+
+<div id="sizeLess1000Clustering" class="choices" aria-hidden="true">
+    <div class="step-in" onclick="showChoices('hardClustering', 'softClustering')">Hard Clustering</div>
+    <div class="step-in" onclick="showChoices('softClustering', 'hardClustering')">Soft Clustering</div>
+</div>
+
+<div id="hardClustering" class="choices" aria-hidden="true">
+    <div class="step-in final" onclick="showChoices('clusteringMetrics', '')">K-Means</div>
+</div>
+
+<div id="softClustering" class="choices" aria-hidden="true">
+    <div class="step-in final" onclick="showChoices('clusteringMetrics', '')">Gaussian Mixture Model</div>
+</div>
+
+<div id="sizeGreater1000Clustering" class="choices" aria-hidden="true">
+    <div class="step-in" onclick="showChoices('shapeClustering', 'densityClustering')">Shape</div>
+    <div class="step-in" onclick="showChoices('densityClustering', 'shapeClustering')">Density</div>
+</div>
+
+<div id="shapeClustering" class="choices" aria-hidden="true">
+    <div class="step-in" onclick="showChoices('knownClusters', 'unknownClusters')">Known Clusters</div>
+    <div class="step-in" onclick="showChoices('unknownClusters', 'knownClusters')">Unknown Clusters</div>
+</div>
+
+<div id="knownClusters" class="choices" aria-hidden="true">
+    <div class="step-in final" onclick="showChoices('clusteringMetrics', '')">K-Means with Fixed k</div>
+</div>
+
+<div id="unknownClusters" class="choices" aria-hidden="true">
+    <div class="step-in final" onclick="showChoices('clusteringMetrics', '')">K-Means with Elbow Method</div>
+</div>
+
+<div id="densityClustering" class="choices" aria-hidden="true">
+    <div class="step-in" onclick="showChoices('identifyOutliers', 'noOutliers')">Identify Outliers</div>
+    <div class="step-in" onclick="showChoices('noOutliers', 'identifyOutliers')">No Outliers</div>
+</div>
+
+<div id="identifyOutliers" class="choices" aria-hidden="true">
+    <div class="step-in final" onclick="showChoices('clusteringMetrics', '')">DBSCAN</div>
+</div>
+
+<div id="noOutliers" class="choices" aria-hidden="true">
+    <div class="step-in final" onclick="showChoices('clusteringMetrics', '')">OPTICS</div>
+</div>
+
+<!-- Dimensionality Reduction -->
+<div id="dimensionalityReduction" class="choices" aria-hidden="true">
+    <div class="step-in" onclick="showChoices('interpretabilityNeeded', 'highDimensional')">Interpretability Needed</div>
+    <div class="step-in" onclick="showChoices('highDimensional', 'interpretabilityNeeded')">High-Dimensional</div>
+    <div class="step-in" onclick="showChoices('lowDimensional', 'interpretabilityNeeded')">High-Dimensional</div>
+</div>
+
+<div id="interpretabilityNeeded" class="choices" aria-hidden="true">
+    <div class="step-in final" onclick="showChoices('performanceMetrics', '')">PCA</div>
+</div>
+
+<div id="highDimensional" class="choices" aria-hidden="true">
+    <div class="step-in final" onclick="showChoices('performanceMetrics', '')">t-SNE</div>
+</div>
+
+<div id="lowDimensional" class="choices" aria-hidden="true">
+    <div class="step-in final" onclick="showChoices('performanceMetrics', '')">Autoencoder</div>
+</div>
+
+<!-- Anomaly Detection -->
+<div id="anomalyDetection" class="choices" aria-hidden="true">
+    <div class="step-in" onclick="showChoices('labeledDataYes', 'labeledDataNo')">Labeled Data</div>
+    <div class="step-in" onclick="showChoices('labeledDataNo', 'labeledDataYes')">No Labeled Data</div>
+</div>
+
+<div id="labeledDataYes" class="choices" aria-hidden="true">
+    <div class="step-in final" onclick="showChoices('anomalyDetectionMetrics', '')">Supervised Anomaly Detection</div>
+</div>
+
+<div id="labeledDataNo" class="choices" aria-hidden="true">
+    <div class="step-in" onclick="showChoices('modelNormalBehaviorYes', 'modelNormalBehaviorNo')">Model Normal Behavior</div>
+    <div class="step-in" onclick="showChoices('modelNormalBehaviorNo', 'modelNormalBehaviorYes')">No Model Normal Behavior</div>
+</div>
+
+<div id="modelNormalBehaviorYes" class="choices" aria-hidden="true">
+    <div class="step-in final" onclick="showChoices('anomalyDetectionMetrics', '')">Isolation Forest</div>
+</div>
+
+<div id="modelNormalBehaviorNo" class="choices" aria-hidden="true">
+    <div class="step-in final" onclick="showChoices('anomalyDetectionMetrics', '')">One-Class SVM</div>
+</div>
+
+<!-- Performance Metrics Section -->
+
+<!-- Classification Metrics -->
+<div id="chooseClassificationMetric" class="choices" aria-hidden="false">
+    <div class="step-in" onclick="showChoices('accuracyMetric', 'precisionMetric')">Accuracy</div>
+    <div class="step-in" onclick="showChoices('precisionMetric', 'accuracyMetric')">Precision</div>
+    <div class="step-in" onclick="showChoices('recallMetric', 'f1ScoreMetric')">Recall</div>
+    <div class="step-in" onclick="showChoices('f1ScoreMetric', 'recallMetric')">F1 Score</div>
+    <div class="step-in" onclick="showChoices('rocAucMetric', 'f1ScoreMetric')">ROC-AUC</div>
+</div>
+
+<!-- Accuracy -->
+<div id="accuracyMetric" class="choices" aria-hidden="false">
+    <div class="step-in final">Use when classes are balanced.</div>
+</div>
+
+<!-- Precision -->
+<div id="precisionMetric" class="choices" aria-hidden="false">
+    <div class="step-in final">Use when false positives are critical.</div>
+</div>
+
+<!-- Recall -->
+<div id="recallMetric" class="choices" aria-hidden="false">
+    <div class="step-in final">Use when false negatives are critical.</div>
+</div>
+
+<!-- F1 Score -->
+<div id="f1ScoreMetric" class="choices" aria-hidden="false">
+    <div class="step-in final">Harmonic mean of precision and recall; use when you need a balance.</div>
+</div>
+
+<!-- ROC-AUC -->
+<div id="rocAucMetric" class="choices" aria-hidden="false">
+    <div class="step-in final">Evaluate trade-off between true and false positives.</div>
+</div>
+
+<div id="classificationFinalMetrics" class="choices" aria-hidden="false">
+    <div class="step-in final">Evaluation with Classification Metrics</div>
+</div>
+
+<!-- Regression Metrics -->
+<div id="regressionMetrics" class="choices" aria-hidden="true">
+    <div class="step-in" onclick="showChoices('chooseRegressionMetric', 'regressionFinalMetrics')">Choose Metrics</div>
+    <div class="step-in" onclick="showChoices('regressionFinalMetrics', 'chooseRegressionMetric')">Final Metrics</div>
+</div>
+
+<div id="chooseRegressionMetric" class="choices" aria-hidden="true">
+    <div class="step-in" onclick="showChoices('rmseMetric', 'maeMetric')">RMSE</div>
+    <div class="step-in" onclick="showChoices('maeMetric', 'rmseMetric')">MAE</div>
+</div>
+
+<div id="regressionFinalMetrics" class="choices" aria-hidden="true">
+    <div class="step-in final">Evaluation with Regression Metrics</div>
+</div>
+
+<!-- Clustering Metrics -->
+<div id="clusteringMetrics" class="choices" aria-hidden="true">
+    <div class="step-in" onclick="showChoices('chooseClusteringMetric', 'clusteringFinalMetrics')">Choose Metrics</div>
+    <div class="step-in" onclick="showChoices('clusteringFinalMetrics', 'chooseClusteringMetric')">Final Metrics</div>
+</div>
+
+<div id="chooseClusteringMetric" class="choices" aria-hidden="true">
+    <div class="step-in" onclick="showChoices('silhouetteScoreMetric', 'dunnIndexMetric')">Silhouette Score</div>
+    <div class="step-in" onclick="showChoices('dunnIndexMetric', 'silhouetteScoreMetric')">Dunn Index</div>
+</div>
+
+<div id="clusteringFinalMetrics" class="choices" aria-hidden="true">
+    <div class="step-in final">Evaluation with Clustering Metrics</div>
+</div>
+
+<!-- Anomaly Detection Metrics -->
+<div id="anomalyDetectionMetrics" class="choices" aria-hidden="true">
+    <div class="step-in" onclick="showChoices('chooseAnomalyDetectionMetric', 'anomalyDetectionFinalMetrics')">Choose Metrics</div>
+    <div class="step-in" onclick="showChoices('anomalyDetectionFinalMetrics', 'chooseAnomalyDetectionMetric')">Final Metrics</div>
+</div>
+
+<div id="chooseAnomalyDetectionMetric" class="choices" aria-hidden="true">
+    <div class="step-in" onclick="showChoices('precisionAnomalyMetric', 'recallAnomalyMetric')">Precision</div>
+    <div class="step-in" onclick="showChoices('recallAnomalyMetric', 'precisionAnomalyMetric')">Recall</div>
+</div>
+
+<div id="anomalyDetectionFinalMetrics" class="choices" aria-hidden="true">
+    <div class="step-in final">Evaluation with Anomaly Detection Metrics</div>
+</div>
+</body>
+</html>
