@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Understanding Flowchart</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/problem-statement-ml.css">
+</head>
+<body>
+    <h1>Business Understanding Flowchart</h1>
+    <div class="flowchart">
+        <div class="step active" id="step1">
+            <h2>Is there a clear, actionable business problem or objective?</h2>
+            <p>This is the first step where you identify if there is a specific problem or goal that can guide your project. If you don't have clarity here, it will be challenging to move forward.</p>
+            <p><strong>Example:</strong> "Increase website traffic by 30% over the next quarter."</p>
+            <div class="buttons">
+                <button onclick="nextStep('step1', 'step2')">Yes</button>
+                <button onclick="nextStep('step1', 'step3')">No</button>
+            </div>
+        </div>
+
+        <div class="step" id="step2">
+            <h2>Define it in measurable terms</h2>
+            <p>Make sure the objective is quantifiable. This will help in setting KPIs and measuring success later on.</p>
+            <p><strong>Example:</strong> "Achieve a monthly sales revenue of $100,000."</p>
+            <div class="buttons">
+                <button onclick="nextStep('step2', 'step4')">Next</button>
+            </div>
+        </div>
+
+        <div class="step" id="step3">
+            <h2>Collaborate with stakeholders for clarification</h2>
+            <p>Engage with relevant stakeholders to gather insights and refine the problem statement. Collaboration is key to understanding the needs of different parties.</p>
+            <p><strong>Example:</strong> "Meet with the marketing team to discuss current challenges and opportunities."</p>
+            <div class="buttons">
+                <button onclick="nextStep('step3', 'step5')">Next</button>
+            </div>
+        </div>
+
+        <!-- Step 4 Updated -->
+        <div class="step" id="step4">
+            <h2>Which metric are we optimizing?</h2>
+            <p>Identify the specific metrics that align with your business goals. Metrics like revenue, churn rate, and customer lifetime value (CLV) are common targets.</p>
+            <p><strong>Example:</strong> "We aim to optimize our customer acquisition cost to be below $50 per customer."</p>
+            <div class="buttons-metrics">
+                <button class="metrics-button" onclick="nextStep('step4', 'step6')">Customer Acquisition Cost (CAC)</button>
+                <button class="metrics-button" onclick="nextStep('step4', 'step6')">Net Promoter Score (NPS)</button>
+                <button class="metrics-button" onclick="nextStep('step4', 'step6')">Customer Satisfaction Score (CSAT)</button>
+                <button class="metrics-button" onclick="nextStep('step4', 'step6')">Conversion Rate</button>
+                <button class="metrics-button" onclick="nextStep('step4', 'step6')">Average Order Value (AOV)</button>
+                <button class="metrics-button" onclick="nextStep('step4', 'step6')">Retention Rate</button>
+                <button class="metrics-button" onclick="nextStep('step4', 'step6')">Engagement Rate</button>
+            </div>
+        </div>
+
+
+        <div class="step" id="step5">
+            <h2>Ask: What are the business's main pain points?</h2>
+            <p>Identify the primary challenges or obstacles that the business faces. Understanding pain points is essential for developing effective solutions.</p>
+            <p><strong>Example:</strong> "High customer churn rate is leading to reduced revenue."</p>
+            <div class="buttons">
+                <button onclick="nextStep('step5', 'step6')">Next</button>
+            </div>
+        </div>
+
+        <div class="step" id="step6">
+            <h2>Do we have existing business hypotheses?</h2>
+            <p>Assess if there are pre-existing hypotheses about the business problem that can guide your analysis. This can provide a starting point for your work.</p>
+            <p><strong>Example:</strong> "We believe that improving customer service will reduce churn by 20%."</p>
+            <div class="buttons">
+                <button onclick="nextStep('step6', 'step7')">Yes</button>
+                <button onclick="nextStep('step6', 'step8')">No</button>
+            </div>
+        </div>
+
+        <div class="step" id="step7">
+            <h2>List the assumptions and expected outcomes</h2>
+            <p>Document any assumptions and the anticipated results of your hypotheses. This will help in assessing the validity of your approach.</p>
+            <p><strong>Example:</strong> "Assuming better training for staff will lead to improved customer satisfaction and lower churn."</p>
+            <div class="buttons">
+                <button onclick="nextStep('step7', 'step9')">Next</button>
+            </div>
+        </div>
+
+        <div class="step" id="step8">
+            <h2>Plan for Exploratory Data Analysis to form hypotheses</h2>
+            <p>If there are no existing hypotheses, outline a plan for exploratory data analysis (EDA) to identify potential insights and hypotheses.</p>
+            <p><strong>Example:</strong> "Analyze customer feedback and service interaction data to uncover trends."</p>
+            <div class="buttons">
+                <button onclick="nextStep('step8', 'step9')">Next</button>
+            </div>
+        </div>
+
+        <div class="step" id="step9">
+            <h2>Can these hypotheses be tested with the available data?</h2>
+            <p>Evaluate if the current data can support testing your hypotheses. Validating hypotheses requires adequate data.</p>
+            <p><strong>Example:</strong> "We have sufficient data from customer feedback surveys to test our hypothesis."</p>
+            <div class="buttons">
+                <button onclick="nextStep('step9', 'step10')">Yes</button>
+                <button onclick="nextStep('step9', 'step11')">No</button>
+            </div>
+        </div>
+
+        <div class="step" id="step10">
+            <h2>Define testable questions to move forward</h2>
+            <p>Formulate specific questions that can be tested with your data. Clear questions guide your analysis effectively.</p>
+            <p><strong>Example:</strong> "What is the relationship between customer service ratings and churn rate?"</p>
+            <div class="buttons">
+                <button onclick="nextStep('step10', 'step12')">Next</button>
+            </div>
+        </div>
+
+        <div class="step" id="step11">
+            <h2>Reassess the data or business question</h2>
+            <p>If the data is insufficient, reconsider your data sources or the business problem itself. Adjustments may be necessary for clarity.</p>
+            <p><strong>Example:</strong> "The data does not cover all customer interactions; we need to gather more information."</p>
+            <div class="buttons">
+                <button onclick="nextStep('step11', 'step12')">Next</button>
+            </div>
+        </div>
+
+        <div class="step" id="step12">
+            <h2>Are the necessary data sources identified and accessible?</h2>
+            <p>Ensure that you have access to all the required data sources to conduct your analysis. Accessibility is crucial for smooth progress.</p>
+            <p><strong>Example:</strong> "We have access to customer feedback data, sales data, and service logs."</p>
+            <div class="buttons">
+                <button onclick="nextStep('step12', 'step13')">Yes</button>
+                <button onclick="nextStep('step12', 'step14')">No</button>
+            </div>
+        </div>
+
+        <div class="step" id="step13">
+            <h2>Is customer data being used and does it involve personal identifiable information?</h2>
+            <p>Evaluate if the customer data you are using contains any personal identifiable information (PII) and ensure compliance with regulations.</p>
+            <p><strong>Example:</strong> "Are we storing names, addresses, or contact information?"</p>
+            <div class="buttons">
+                <button onclick="nextStep('step13', 'step15')">Yes</button>
+                <button onclick="nextStep('step13', 'step17')">No</button>
+            </div>
+        </div>
+
+        <div class="step" id="step14">
+            <h2>Proceed with non-sensitive data</h2>
+            <p>If data access is an issue, consider working with non-sensitive data as a temporary solution to continue your analysis.</p>
+            <p><strong>Example:</strong> "Utilize anonymized customer feedback data for initial analysis."</p>
+            <div class="buttons">
+                <button onclick="nextStep('step14', 'end')">Finish</button>
+            </div>
+        </div>
+
+        <div class="step" id="step15">
+            <h2>Is the data anonymized or can it be anonymized?</h2>
+            <p>Check if the data can be anonymized or if it is already anonymized to ensure the privacy of individuals.</p>
+            <p><strong>Example:</strong> "Can we mask or aggregate the data?"</p>
+            <div class="buttons">
+                <button onclick="nextStep('step15', 'step18')">Yes</button>
+                <button onclick="nextStep('step15', 'step19')">No</button>
+            </div>
+        </div>
+
+        <div class="step" id="step16">
+            <h2>Proceed with anonymized data</h2>
+            <p>If the data can be anonymized, you can move forward safely with your analysis.</p>
+            <p><strong>Example:</strong> "Anonymized data is ready for use in analysis."</p>
+            <div class="buttons">
+                <button onclick="nextStep('step16', 'step20')">Next</button>
+            </div>
+        </div>
+
+        <div class="step" id="step17">
+            <h2>Proceed without PII</h2>
+            <p>If the data does not include PII, you can proceed with your analysis without additional concerns.</p>
+            <p><strong>Example:</strong> "Data is aggregated and does not contain personal details."</p>
+            <div class="buttons">
+                <button onclick="nextStep('step17', 'step20')">Next</button>
+            </div>
+        </div>
+
+        <div class="step" id="step18">
+            <h2>Apply anonymization techniques</h2>
+            <p>If the data cannot be anonymized, consider applying techniques like masking or generalization to protect individual identities.</p>
+            <p><strong>Example:</strong> "Masking personal identifiers before analysis."</p>
+            
+            <!-- Input field for user to enter techniques they would apply -->
+            <label for="anonymizationTechnique">Your Technique:</label>
+            <input type="text" id="anonymizationTechnique" class="input-field" placeholder="Type your technique here...">
+            
+            <div class="buttons">
+                <button onclick="recordAnonymizationTechnique()">Record Technique and Next</button>
+            </div>
+        </div>
+        
+
+        <div class="step" id="step20">
+            <h2>Is the data sufficient in terms of quantity, quality, and relevance?</h2>
+            <p>Ensure that your data is adequate for analysis. Insufficient data can lead to unreliable conclusions.</p>
+            <p><strong>Example:</strong> "Do we have enough records and diverse data points?"</p>
+            <div class="buttons">
+                <button onclick="nextStep('step20', 'step21')">Yes</button>
+                <button onclick="nextStep('step20', 'step22')">No</button>
+            </div>
+        </div>
+
+        <div class="step" id="step21">
+            <h2>Prepare for data collection and preprocessing</h2>
+            <p>If the data is sufficient, proceed with preparing the data for analysis. Ensure all necessary cleaning and formatting steps are taken.</p>
+            <p><strong>Example:</strong> "Data is collected and ready for preprocessing."</p>
+            <div class="buttons">
+                <button onclick="nextStep('step21', 'end')">Next</button>
+            </div>
+        </div>
+
+        <div class="step" id="step22">
+            <h2>Identify additional data sources or improve data quality</h2>
+            <p>If the data is insufficient, consider finding additional sources or enhancing the quality of existing data.</p>
+            <p><strong>Example:</strong> "Look for alternative data sources or improve data collection methods."</p>
+            <div class="buttons">
+                <button onclick="nextStep('step22', 'end')">Next</button>
+            </div>
+        </div>
+
+        <div class="step" id="end">
+            <h2>Thank you for completing the flowchart!</h2>
+            <div class="buttons">
+                <button onclick="resetFlowchart()">Start Over</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="answer-input">
+        <label for="answer">Your Answer:</label>
+        <input type="text" id="answer" class="input-field" placeholder="Type your answer here...">
+        <div style="display: flex; align-items: center;">
+            <button class="navigation-buttons" onclick="goBack()">Back</button>
+            <button class="navigation-buttons" class="metrics-button" onclick="recordAnswer(document.getElementById('answer').value)">Record Answer</button>
+            <button class="navigation-buttons" onclick="nextStep()">Next</button>
+        </div>
+    </div>
+    
+    <div class="recorded-answers" id="recordedAnswers">
+        <div id="answersList"></div>
+    </div>
+    <script src="problem-statement-ml.js"></script>
+</body>
+</html>
