@@ -131,3 +131,20 @@ footer .social-links a {
 footer .social-links a:hover {
   color: #b2dfdb;
 }
+
+.buttons {
+    margin-top: 10px;
+}
+
+.buttons button {
+    padding: 10px 15px;
+    background-color: #ff4757; /* Change this to match your color scheme */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buttons button:hover {
+    background-color: #ff6b81; /* Hover effect */
+}
