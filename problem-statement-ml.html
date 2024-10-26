@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Business Understanding Flowchart</title>
+    <title>Data Science - Problem Statement Formulating</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/problem-statement-ml.css">
 </head>
@@ -12,8 +12,8 @@
     <div class="flowchart">
         <div class="step active" id="step1">
             <h2>Is there a clear, actionable business problem or objective?</h2>
-            <p>This is the first step where you identify if there is a specific problem or goal that can guide your project. If you don't have clarity here, it will be challenging to move forward.</p>
-            <p><strong>Example:</strong> "Increase website traffic by 30% over the next quarter."</p>
+            <p>This is the first step where you identify if there is a specific problem or goal that can guide your project. </p>
+            <p><strong>Example:</strong> "Increase website traffic."</p>
             <div class="buttons">
                 <button onclick="nextStep('step1', 'step2')">Yes</button>
                 <button onclick="nextStep('step1', 'step3')">No</button>
@@ -22,7 +22,9 @@
 
         <div class="step" id="step2">
             <h2>Define it in measurable terms</h2>
-            <p>Make sure the objective is quantifiable. This will help in setting KPIs and measuring success later on.</p>
+            <p>Make sure the objective is quantifiable. This will help in setting KPIs and measuring success later on. Be clear with your definitons
+                as meanings may vary per company and per industry i.e. vulnerable client in banking is different from a vulnerable client in health
+            </p>
             <p><strong>Example:</strong> "Achieve a monthly sales revenue of $100,000."</p>
             <div class="buttons">
                 <button onclick="nextStep('step2', 'step4')">Next</button>
@@ -230,17 +232,15 @@
 
     <div class="answer-input">
         <label for="answer">Your Answer:</label>
-        <input type="text" id="answer" class="input-field" placeholder="Type your answer here...">
+        <textarea id="answer" class="input-field" placeholder="Type your answer here..." rows="4"></textarea>
         <div style="display: flex; align-items: center;">
-            <button class="navigation-buttons" onclick="goBack()">Back</button>
-            <button class="navigation-buttons" class="metrics-button" onclick="recordAnswer(document.getElementById('answer').value)">Record Answer</button>
-            <button class="navigation-buttons" onclick="nextStep()">Next</button>
+            <button class="navigation-buttons" onclick="recordAnswer(document.getElementById('answer').value)">Record Answer</button>
         </div>
     </div>
     
     <div class="recorded-answers" id="recordedAnswers">
         <div id="answersList"></div>
-    </div>
+    </div>    
     <script src="problem-statement-ml.js"></script>
 </body>
 </html>
