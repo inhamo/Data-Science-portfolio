@@ -3,15 +3,15 @@ body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #eef2f3; /* Light gray background for contrast */
-    color: #444;
+    background-color: #f3f4f6; /* Light gray background for contrast */
+    color: #333; /* Dark gray for text */
 }
 
 h1 {
     text-align: center;
     font-size: 2.5rem;
     margin: 20px 0;
-    color: #d9534f; /* Vibrant red for the heading */
+    color: #20b2aa; /* Teal for the heading */
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
@@ -31,9 +31,9 @@ h1 {
     padding: 30px; /* Increased padding for spaciousness */
     margin: 20px 0;
     border-radius: 10px;
-    border: 2px solid #d9534f; /* Border color matching the heading */
+    border: 2px solid #20b2aa; /* Border color matching the heading */
     transition: all 0.4s ease; /* Smooth transition for visibility */
-    background-color: #f9f9f9; /* Light gray background for steps */
+    background-color: #fbf8f0; /* Light beige background for steps */
     position: relative; /* Relative positioning for effects */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for steps */
 }
@@ -52,7 +52,7 @@ h1 {
 /* Paragraph styles for examples and descriptions */
 .step p {
     font-size: 1rem;
-    color: #666; /* Medium gray for text */
+    color: #555; /* Medium gray for text */
     margin-bottom: 25px;
 }
 
@@ -64,7 +64,7 @@ h1 {
 }
 
 button {
-    background-color: #d9534f; /* Beautiful red for buttons */
+    background-color: #20b2aa; /* Teal for buttons */
     color: white;
     border: none;
     border-radius: 25px; /* Circular buttons */
@@ -76,7 +76,7 @@ button {
 }
 
 button:hover {
-    background-color: #c9302c; /* Darker red on hover */
+    background-color: #17a59d; /* Darker teal on hover */
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
 }
@@ -98,7 +98,7 @@ button:active {
     padding: 15px; /* Padding for better click area */
     font-size: 16px; /* Adjust font size */
     color: #fff; /* Change text color */
-    background-color: #c9302c; /* Button background color */
+    background-color: #17a59d; /* Button background color */
     border: none; /* Remove default border */
     border-radius: 25px; /* Rounded corners */
     cursor: pointer; /* Pointer cursor on hover */
@@ -125,16 +125,27 @@ button:active {
     font-size: 16px;
     margin: 20px 0;
     outline: none;
-    background-color: transparent;
-    border-bottom: 1px solid #ccc;;
+    background-color: #ffffff; /* White background for input fields */
+    border: 1px solid #ccc; /* Border for input fields */
     width: 80%;
-    text-align: center;
+    text-align: left; /* Align text to the left */
+    resize: vertical; /* Allow vertical resizing of the textarea */
+}
+
+input[type="text"],
+textarea {
+    transition: border-color 0.3s ease; /* Transition for border color on focus */
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    border-color: #20b2aa; /* Change border color on focus */
 }
 
 .recorded-answers {
     margin: 20px 70px;
     padding: 10px;
-    border:none;
+    border: none;
     border-radius: 4px;
     background-color: transparent;
 }
@@ -142,30 +153,21 @@ button:active {
 .recorded-answer {
     margin: 5px 0;
     padding: 5px;
-    border-left: 4px solid #c9302c;
+    border-left: 4px solid #20b2aa; /* Teal border for recorded answers */
 }
 
 .navigation-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-    margin: auto 20px;
-}
-
-.navigation-buttons button {
-    padding: 10px 15px;
     border: none;
-    border-radius: 4px;
-    background-color: #007BFF;
+    border-radius: 20px;
+    background-color: #20b2aa; /* Blue for navigation buttons */
     color: white;
     cursor: pointer;
     font-size: 16px;
 }
 
-.navigation-buttons button:hover {
+.navigation-buttons:hover {
     background-color: #0056b3;
 }
-
 
 
 /* Responsive adjustments */
@@ -181,5 +183,9 @@ button:active {
     button {
         padding: 10px 20px; /* Adjusted button padding for smaller screens */
         font-size: 0.9rem;
+    }
+
+    .input-field {
+        width: 90%; /* Adjust width for smaller screens */
     }
 }
