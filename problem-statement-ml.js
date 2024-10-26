@@ -10,7 +10,7 @@ function recordAnswer(answer) {
         answersList.appendChild(newAnswer);
 
         // Clear the input field after recording
-        document.getElementById('anonymizationTechnique').value = '';
+        document.getElementById('answer').value = ''; // Ensure correct input field is cleared
     }
 }
 
@@ -96,3 +96,5 @@ document.querySelectorAll('.back-button').forEach(button => {
 
 // Event listener for the reset button
 document.getElementById('resetButton').addEventListener('click', resetFlowchart);
+
+
