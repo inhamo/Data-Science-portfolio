@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Science Checklist</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -44,11 +45,59 @@
         .checkbox-item input {
             margin-right: 10px;
         }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
     </style>
     <script>
         function toggleContent(id) {
             const content = document.getElementById(id);
             content.style.display = content.style.display === "none" ? "block" : "none";
+        }
+
+        function generatePDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Title
+            doc.setFontSize(22);
+            doc.text('Data Science Project Checklist', 10, 10);
+
+            // Add content from each section
+            let yOffset = 20; // Start position for content
+            const sections = document.querySelectorAll('.section');
+
+            sections.forEach(section => {
+                const title = section.querySelector('h2').innerText;
+                doc.setFontSize(18);
+                doc.text(title, 10, yOffset);
+                yOffset += 10;
+
+                const textAreas = section.querySelectorAll('textarea');
+                textAreas.forEach(textarea => {
+                    const answer = textarea.value;
+                    doc.setFontSize(12);
+                    doc.text(answer ? answer : 'No answer provided.', 10, yOffset);
+                    yOffset += 10;
+                });
+
+                const checkboxes = section.querySelectorAll('.checkbox-item input[type="checkbox"]');
+                checkboxes.forEach(checkbox => {
+                    const label = checkbox.parentElement.innerText.trim();
+                    if (checkbox.checked) {
+                        doc.text('✓ ' + label, 10, yOffset);
+                    }
+                    yOffset += 10;
+                });
+
+                yOffset += 10; // Extra space between sections
+            });
+
+            // Save the PDF
+            doc.save('Data_Science_Checklist.pdf');
         }
     </script>
 </head>
@@ -62,46 +111,32 @@
         <div id="step1" class="content">
             <label>Define business problem and objectives:</label>
             <textarea placeholder="Write your answer here..."></textarea>
-            
             <label>Identify stakeholders and understand their expectations:</label>
             <textarea placeholder="Write your answer here..."></textarea>
-
             <label>Outline how the model’s predictions will be used in decision-making:</label>
             <textarea placeholder="Write your answer here..."></textarea>
-
             <label>Specify the target variable(s):</label>
             <textarea placeholder="Write your answer here..."></textarea>
-
             <label>Determine the main features influencing the target variable:</label>
             <textarea placeholder="Write your answer here..."></textarea>
-
             <label>Decide on evaluation metrics:</label>
             <textarea placeholder="Write your answer here..."></textarea>
-
             <label>Assess any business constraints:</label>
             <textarea placeholder="Write your answer here..."></textarea>
-
             <label>Check for legal or ethical concerns around predictions:</label>
             <textarea placeholder="Write your answer here..."></textarea>
-
             <label>Outline data requirements:</label>
             <textarea placeholder="Write your answer here..."></textarea>
-
             <label>Define timeline and milestones:</label>
             <textarea placeholder="Write your answer here..."></textarea>
-
             <label>Estimate computational resources:</label>
             <textarea placeholder="Write your answer here..."></textarea>
-
             <label>Identify deployment requirements:</label>
             <textarea placeholder="Write your answer here..."></textarea>
-
             <label>Specify data access permissions and storage:</label>
             <textarea placeholder="Write your answer here..."></textarea>
-
             <label>Set measurable goals to evaluate model impact:</label>
             <textarea placeholder="Write your answer here..."></textarea>
-
             <label>Document all assumptions and limitations:</label>
             <textarea placeholder="Write your answer here..."></textarea>
         </div>
@@ -224,6 +259,8 @@
             <textarea placeholder="Write your answer here..."></textarea>
         </div>
     </div>
+
+    <button onclick="generatePDF()">Download PDF</button>
 
 </body>
 </html>
