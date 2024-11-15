@@ -59,46 +59,63 @@
         }
 
         function generatePDF() {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    
+    // Title
+    doc.setFontSize(22);
+    doc.text('Data Science Project Checklist', 10, 10);
+    
+    let yOffset = 20; // Start position for content
+    
+    const sections = document.querySelectorAll('.section');
+    sections.forEach(section => {
+        const title = section.querySelector('h2').innerText;
+        doc.setFontSize(18);
+        doc.text(title, 10, yOffset);
+        yOffset += 10;
 
-            // Title
-            doc.setFontSize(22);
-            doc.text('Data Science Project Checklist', 10, 10);
+        // Add textarea content (answers to questions)
+        const textAreas = section.querySelectorAll('textarea');
+        textAreas.forEach(textarea => {
+            const answer = textarea.value.trim();
+            doc.setFontSize(12);
+            if (answer) {
+                doc.text(answer, 10, yOffset);
+            } else {
+                doc.text('No answer provided.', 10, yOffset);
+            }
+            yOffset += 10;
 
-            // Add content from each section
-            let yOffset = 20; // Start position for content
-            const sections = document.querySelectorAll('.section');
+            // Check if the content is too long and needs to be wrapped or added to the next page
+            if (yOffset > 270) { // Check if the yOffset is near the bottom of the page
+                doc.addPage(); // Add a new page
+                yOffset = 10; // Reset position for the next page
+            }
+        });
 
-            sections.forEach(section => {
-                const title = section.querySelector('h2').innerText;
-                doc.setFontSize(18);
-                doc.text(title, 10, yOffset);
-                yOffset += 10;
+        // Add checkbox items
+        const checkboxes = section.querySelectorAll('.checkbox-item input[type="checkbox"]');
+        checkboxes.forEach(checkbox => {
+            const label = checkbox.parentElement.innerText.trim();
+            if (checkbox.checked) {
+                doc.text('✓ ' + label, 10, yOffset);
+            }
+            yOffset += 10;
 
-                const textAreas = section.querySelectorAll('textarea');
-                textAreas.forEach(textarea => {
-                    const answer = textarea.value;
-                    doc.setFontSize(12);
-                    doc.text(answer ? answer : 'No answer provided.', 10, yOffset);
-                    yOffset += 10;
-                });
+            if (yOffset > 270) { // Check if the yOffset is near the bottom of the page
+                doc.addPage(); // Add a new page
+                yOffset = 10; // Reset position for the next page
+            }
+        });
 
-                const checkboxes = section.querySelectorAll('.checkbox-item input[type="checkbox"]');
-                checkboxes.forEach(checkbox => {
-                    const label = checkbox.parentElement.innerText.trim();
-                    if (checkbox.checked) {
-                        doc.text('✓ ' + label, 10, yOffset);
-                    }
-                    yOffset += 10;
-                });
+        yOffset += 10; // Extra space between sections
+    });
 
-                yOffset += 10; // Extra space between sections
-            });
+    // Save the PDF
+    doc.save('Data_Science_Checklist.pdf');
+}
 
-            // Save the PDF
-            doc.save('Data_Science_Checklist.pdf');
-        }
     </script>
 </head>
 <body>
